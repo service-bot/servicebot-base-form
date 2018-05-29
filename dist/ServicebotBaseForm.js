@@ -40,13 +40,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _load = require('../utilities/load.jsx');
+var _Fetcher = require('./Fetcher');
 
-var _load2 = _interopRequireDefault(_load);
-
-var _fetcher = require('../utilities/fetcher.jsx');
-
-var _fetcher2 = _interopRequireDefault(_fetcher);
+var _Fetcher2 = _interopRequireDefault(_Fetcher);
 
 var _reduxForm = require('redux-form');
 
@@ -90,6 +86,7 @@ Note:
 Form name is 'servicebotForm' if selector is needed
  */
 
+// import Load from '../utilities/load.jsx';
 var ServiceBotBaseForm = function (_React$Component) {
     (0, _inherits3.default)(ServiceBotBaseForm, _React$Component);
 
@@ -219,7 +216,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                     request = this.getRequest(self.state.submissionRequest.method, values);
                                 }
                                 _context2.next = 7;
-                                return (0, _fetcher2.default)(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
+                                return (0, _Fetcher2.default)(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
 
                             case 7:
                                 result = _context2.sent;
@@ -300,7 +297,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 switch (_context3.prev = _context3.next) {
                                     case 0:
                                         _context3.next = 2;
-                                        return (0, _fetcher2.default)(requestInfo.url, requestInfo.method);
+                                        return (0, _Fetcher2.default)(requestInfo.url, requestInfo.method);
 
                                     case 2:
                                         response = _context3.sent;
@@ -397,7 +394,11 @@ var ServiceBotBaseForm = function (_React$Component) {
         key: 'render',
         value: function render() {
             if (this.state.initializing) {
-                return _react2.default.createElement(_load2.default, null);
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    'loading'
+                );
             }
             if (this.state.success && !this.props.reShowForm) {
                 return _react2.default.createElement(
