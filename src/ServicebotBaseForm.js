@@ -2,6 +2,7 @@ import React from 'react';
 // import Load from '../utilities/load.jsx';
 import Fetcher from "./Fetcher";
 import {reduxForm, SubmissionError, stopSubmit} from 'redux-form'
+import {connect} from "react-redux"
 /*
 To use ServiceBot Base Form:
 Inputs->
@@ -123,7 +124,7 @@ class ServiceBotBaseForm extends React.Component {
             }
             self.setState({loading: false, success: true, submissionResponse: result});
             if (this.props.successRoute) {
-                browserHistory.push(this.props.successRoute);
+                this.props.history.push(this.props.successRoute);
             }
         }
         else {
@@ -135,7 +136,7 @@ class ServiceBotBaseForm extends React.Component {
             // self.props.endSubmit({_error: result.error})
             throw result.error;
             if (this.props.failureRoute) {
-                browserHistory.push(this.props.failureRoute);
+                self.props.history.push(this.props.failureRoute);
             }
         }
 
@@ -178,7 +179,7 @@ class ServiceBotBaseForm extends React.Component {
                 } else {
                     console.error("fetch error", error);
                     self.setState({initializing: false});
-                    self.state.failureRoute && browserHistory.push(self.state.failureRoute);
+                    self.state.failureRoute && self.props.history.push(self.state.failureRoute);
 
                 }
             })
@@ -218,5 +219,9 @@ class ServiceBotBaseForm extends React.Component {
     }
 }
 
-
+ServiceBotBaseForm = connect(state => {
+    return {
+        history : state.history
+    }
+})(ServiceBotBaseForm)
 export default ServiceBotBaseForm;
