@@ -1,6 +1,6 @@
 import React from 'react';
-import Load from '../utilities/load.jsx';
-import Fetcher from "../utilities/fetcher.jsx";
+// import Load from '../utilities/load.jsx';
+import Fetcher from "./Fetcher";
 import {reduxForm, SubmissionError, stopSubmit} from 'redux-form'
 /*
 To use ServiceBot Base Form:
@@ -197,7 +197,7 @@ class ServiceBotBaseForm extends React.Component {
 
     render() {
         if (this.state.initializing) {
-            return (<Load/>);
+            return (<div>loading</div>);
 
         }
         if (this.state.success && !this.props.reShowForm) {
