@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.priceField = exports.iconToggleField = exports.OnOffToggleField = exports.selectField = exports.widgetField = exports.inputField = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -440,11 +436,7 @@ var priceField = function (_React$Component4) {
             var name = e.target.name;
             var self = this;
             var price = this.props.isCents ? (0, _toCents.toCents)(floatvalue) : floatvalue;
-            console.log(price);
-            console.log(this.state);
-            this.setState((0, _defineProperty3.default)({}, name, price), function () {
-                self.props.input.onChange(self.state[name]);
-            });
+            self.props.input.onChange(price);
         }
     }, {
         key: 'render',
