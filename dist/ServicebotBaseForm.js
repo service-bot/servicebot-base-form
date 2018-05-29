@@ -46,6 +46,8 @@ var _Fetcher2 = _interopRequireDefault(_Fetcher);
 
 var _reduxForm = require('redux-form');
 
+var _reactRedux = require('react-redux');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -86,7 +88,6 @@ Note:
 Form name is 'servicebotForm' if selector is needed
  */
 
-// import Load from '../utilities/load.jsx';
 var ServiceBotBaseForm = function (_React$Component) {
     (0, _inherits3.default)(ServiceBotBaseForm, _React$Component);
 
@@ -242,7 +243,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 }
                                 self.setState({ loading: false, success: true, submissionResponse: result });
                                 if (this.props.successRoute) {
-                                    browserHistory.push(this.props.successRoute);
+                                    this.props.history.push(this.props.successRoute);
                                 }
                                 _context2.next = 28;
                                 break;
@@ -365,7 +366,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                     case 11:
                                         console.error("fetch error", error);
                                         self.setState({ initializing: false });
-                                        self.state.failureRoute && browserHistory.push(self.state.failureRoute);
+                                        self.state.failureRoute && self.props.history.push(self.state.failureRoute);
 
                                     case 14:
                                     case 'end':
@@ -428,5 +429,12 @@ var ServiceBotBaseForm = function (_React$Component) {
     }]);
     return ServiceBotBaseForm;
 }(_react2.default.Component);
+// import Load from '../utilities/load.jsx';
 
+
+ServiceBotBaseForm = (0, _reactRedux.connect)(function (state) {
+    return {
+        history: state.history
+    };
+})(ServiceBotBaseForm);
 exports.default = ServiceBotBaseForm;
