@@ -96,6 +96,9 @@ class ServiceBotBaseForm extends React.Component {
 
 
         };
+        if(!this.props.external){
+            request.credentials = "include";
+        }
 
         if(method === "POST" || method==="PUT"){
             request.body = JSON.stringify(body)
@@ -108,10 +111,8 @@ class ServiceBotBaseForm extends React.Component {
         let result = null;
         let request = null;
         try {
-            if(this.props.token){
-                request = this.getRequest(self.state.submissionRequest.method, values);
-            }
-            result = await Fetcher(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request || self.state.submissionRequest);
+            request = this.getRequest(self.state.submissionRequest.method, values);
+            result = await Fetcher(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
         } catch (e) {
             console.error("Fetch error", e);
             self.setState({loading: false});
