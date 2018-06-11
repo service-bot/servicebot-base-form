@@ -193,6 +193,9 @@ var ServiceBotBaseForm = function (_React$Component) {
                 headers: new Headers(headers)
 
             };
+            if (!this.props.external) {
+                request.credentials = "include";
+            }
 
             if (method === "POST" || method === "PUT") {
                 request.body = JSON.stringify(body);
@@ -213,9 +216,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 request = null;
                                 _context2.prev = 3;
 
-                                if (this.props.token) {
-                                    request = this.getRequest(self.state.submissionRequest.method, values);
-                                }
+                                request = this.getRequest(self.state.submissionRequest.method, values);
                                 _context2.next = 7;
                                 return (0, _Fetcher2.default)(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
 

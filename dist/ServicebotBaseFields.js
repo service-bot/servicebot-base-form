@@ -432,11 +432,8 @@ var priceField = function (_React$Component4) {
     (0, _createClass3.default)(priceField, [{
         key: 'handleChange',
         value: function handleChange(e, maskedValue, floatvalue) {
-            console.log(e, maskedValue, floatvalue);
-            var name = e.target.name;
-            var self = this;
             var price = this.props.isCents ? (0, _toCents.toCents)(floatvalue) : floatvalue;
-            self.props.input.onChange(price);
+            this.props.input.onChange(price);
         }
     }, {
         key: 'render',
