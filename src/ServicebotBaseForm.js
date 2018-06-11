@@ -111,7 +111,7 @@ class ServiceBotBaseForm extends React.Component {
             if(this.props.token){
                 request = this.getRequest(self.state.submissionRequest.method, values);
             }
-            result = await Fetcher(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
+            result = await Fetcher(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request || self.state.submissionRequest);
         } catch (e) {
             console.error("Fetch error", e);
             self.setState({loading: false});
