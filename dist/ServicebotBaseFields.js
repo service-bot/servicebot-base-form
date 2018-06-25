@@ -29,9 +29,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactCurrencyInput = require('react-currency-input');
+var _reactNumberFormat = require('react-number-format');
 
-var _reactCurrencyInput2 = _interopRequireDefault(_reactCurrencyInput);
+var _reactNumberFormat2 = _interopRequireDefault(_reactNumberFormat);
 
 var _reactTooltip = require('react-tooltip');
 
@@ -423,7 +423,7 @@ var priceField = function (_React$Component4) {
         var _this4 = (0, _possibleConstructorReturn3.default)(this, (priceField.__proto__ || Object.getPrototypeOf(priceField)).call(this, props));
 
         _this4.state = {
-            amount: "0.00"
+            amount: "0"
         };
         _this4.handleChange = _this4.handleChange.bind(_this4);
         return _this4;
@@ -431,8 +431,10 @@ var priceField = function (_React$Component4) {
 
     (0, _createClass3.default)(priceField, [{
         key: 'handleChange',
-        value: function handleChange(e, maskedValue, floatvalue) {
-            var price = this.props.isCents ? (0, _toCents.toCents)(floatvalue) : floatvalue;
+        value: function handleChange(_ref, e) {
+            var value = _ref.value;
+
+            var price = this.props.isCents ? (0, _toCents.toCents)(value) : value;
             this.props.input.onChange(price);
         }
     }, {
@@ -453,7 +455,7 @@ var priceField = function (_React$Component4) {
                 warning = _props6$meta.warning;
 
             var prefix = options.currency ? (0, _currencySymbolMap2.default)(options.currency.value) : '';
-            var price = isCents ? (value / 100).toFixed(2) : value;
+            var price = isCents ? value / 100 : value;
             return _react2.default.createElement(
                 'div',
                 { className: 'form-group form-group-flex' },
@@ -465,9 +467,11 @@ var priceField = function (_React$Component4) {
                 _react2.default.createElement(
                     'div',
                     { className: 'form-input-flex' },
-                    _react2.default.createElement(_reactCurrencyInput2.default, { className: 'form-control', name: name,
-                        prefix: prefix, decimalSeparator: '.', thousandSeparator: ',', precision: '2',
-                        onChangeEvent: this.handleChange, value: price
+                    _react2.default.createElement(_reactNumberFormat2.default, { className: 'form-control', name: name,
+                        prefix: prefix, decimalSeparator: '.', thousandSeparator: ',', decimalScale: '2',
+                        allowNegative: false,
+                        fixedDecimalScale: false,
+                        onValueChange: this.handleChange, value: price
                     }),
                     touched && (error && _react2.default.createElement(
                         'span',
