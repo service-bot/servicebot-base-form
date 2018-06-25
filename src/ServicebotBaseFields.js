@@ -1,5 +1,5 @@
 import React from 'react';
-import CurrencyInput from 'react-currency-input';
+import NumberFormat from 'react-number-format';
 import ReactTooltip from 'react-tooltip'
 import {toCents} from "./toCents"
 import {connect} from 'react-redux';
@@ -241,27 +241,29 @@ class priceField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            amount: "0.00"
+            amount: "0"
         };
         this.handleChange = this.handleChange.bind(this);
     };
 
-    handleChange(e, maskedValue, floatvalue) {
-        let price = this.props.isCents ? toCents(floatvalue) : floatvalue;
+    handleChange({value}, e) {
+        let price = this.props.isCents ? toCents(value) : value;
         this.props.input.onChange(price);
     }
 
     render() {
         let {options, isCents, input:{name, value, onChange}, label, type, meta: {touched, error, warning}} = this.props;
         let prefix = options.currency ? getSymbolFromCurrency(options.currency.value) : '';
-        let price = isCents ?  (value/100).toFixed( 2 ) : value;
+        let price = isCents ?  (value/100) : value;
         return (
             <div className={`form-group form-group-flex`}>
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div className="form-input-flex">
-                    <CurrencyInput className="form-control" name={name}
-                                   prefix={prefix} decimalSeparator="." thousandSeparator="," precision="2"
-                                   onChangeEvent={this.handleChange} value={price}
+                    <NumberFormat className="form-control" name={name}
+                                  prefix={prefix} decimalSeparator="." thousandSeparator="," decimalScale="2"
+                                  allowNegative={false}
+                                  fixedDecimalScale={false}
+                                  onValueChange={this.handleChange} value={price}
                     />
                     {touched && ((error && <span className="form-error">{error}</span>) || (warning &&
                         <span className="form-warning">{warning}</span>))}
