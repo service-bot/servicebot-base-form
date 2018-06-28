@@ -8,10 +8,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactSAlert = require('react-s-alert');
-
-var _reactSAlert2 = _interopRequireDefault(_reactSAlert);
-
 require('whatwg-fetch');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -45,14 +41,14 @@ var Fetcher = function Fetcher(path) {
     }).then(function (response) {
         if (response != null) {
             if (response.error) {
-                _reactSAlert2.default.error(response.error);
+                // Alert.error(response.error);
             }
             if (response.message) {
-                _reactSAlert2.default.info(response.message);
+                // Alert.info(response.message);
+
             }
         }
         return response;
     });
 };
-// import 'react-s-alert/dist/s-alert-default.css';
 exports.default = Fetcher;
