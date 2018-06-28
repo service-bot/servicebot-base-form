@@ -47,24 +47,18 @@ Form name is 'servicebotForm' if selector is needed
 
 
 function Loading(props){
-    return(<div dangerouslySetInnerHTML={{__html: `
-
-<style>
-    .blur {
-        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-        -webkit-filter: url(#blur-filter);
-        filter: url(#blur-filter);
-        -webkit-filter: blur(3px);
-        filter: blur(3px);
+    let style = {
+        position: "fixed",
+    width: "100%",
+    height: "100%",
+    "top": "0",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    "background-color": "rgba(162, 162, 162, 0.5)",
+    "z-index": 2
     }
-</style>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="blur-svg">
-        <defs>
-            <filter id="blur-filter">
-                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
-            </filter>
-        </defs>
-    </svg>`}}/>)
+    return(<div style={style}></div>);
 }
 class ServiceBotBaseForm extends React.Component {
 
