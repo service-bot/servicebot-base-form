@@ -48,6 +48,14 @@ var _reduxForm = require('redux-form');
 
 var _reactRedux = require('react-redux');
 
+var _reactSAlert = require('react-s-alert');
+
+var _reactSAlert2 = _interopRequireDefault(_reactSAlert);
+
+require('react-s-alert/dist/s-alert-default.css');
+
+require('react-s-alert/dist/s-alert-css-effects/slide.css');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -87,6 +95,11 @@ Ex:
 Note:
 Form name is 'servicebotForm' if selector is needed
  */
+
+// import Load from '../utilities/load.jsx';
+function Loading(props) {
+    return _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: '\n\n<style>\n    .blur {\n        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=\'3\');\n        -webkit-filter: url(#blur-filter);\n        filter: url(#blur-filter);\n        -webkit-filter: blur(3px);\n        filter: blur(3px);\n    }\n</style>\n<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="blur-svg">\n        <defs>\n            <filter id="blur-filter">\n                <feGaussianBlur stdDeviation="3"></feGaussianBlur>\n            </filter>\n        </defs>\n    </svg>' } });
+}
 
 var ServiceBotBaseForm = function (_React$Component) {
     (0, _inherits3.default)(ServiceBotBaseForm, _React$Component);
@@ -222,7 +235,7 @@ var ServiceBotBaseForm = function (_React$Component) {
 
                             case 7:
                                 result = _context2.sent;
-                                _context2.next = 15;
+                                _context2.next = 17;
                                 break;
 
                             case 10:
@@ -231,11 +244,15 @@ var ServiceBotBaseForm = function (_React$Component) {
 
                                 console.error("Fetch error", _context2.t0);
                                 self.setState({ loading: false });
+                                _reactSAlert2.default.error(_context2.t0);
+                                if (this.props.handleFailure) {
+                                    self.props.handleFailure(_context2.t0);
+                                }
                                 throw "Error submitting";
 
-                            case 15:
+                            case 17:
                                 if (result.error) {
-                                    _context2.next = 21;
+                                    _context2.next = 24;
                                     break;
                                 }
 
@@ -243,28 +260,32 @@ var ServiceBotBaseForm = function (_React$Component) {
                                     self.props.handleResponse(result);
                                 }
                                 self.setState({ loading: false, success: true, submissionResponse: result });
+                                this.state.successMessage && _reactSAlert2.default.success(this.state.successMessage);
                                 if (this.props.successRoute) {
                                     this.props.history.push(this.props.successRoute);
                                 }
-                                _context2.next = 28;
+                                _context2.next = 32;
                                 break;
 
-                            case 21:
+                            case 24:
                                 console.error("submission error", result.error);
                                 self.setState({ loading: false });
 
                                 if (!this.props.handleFailure) {
-                                    _context2.next = 26;
+                                    _context2.next = 29;
                                     break;
                                 }
 
-                                _context2.next = 26;
+                                _context2.next = 29;
                                 return self.props.handleFailure(result);
 
-                            case 26:
+                            case 29:
+                                _reactSAlert2.default.error(result.error);
+
+                                // self.props.endSubmit({_error: result.error})
                                 throw result.error;
 
-                            case 28:
+                            case 32:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -423,6 +444,8 @@ var ServiceBotBaseForm = function (_React$Component) {
                 return _react2.default.createElement(
                     'div',
                     null,
+                    _react2.default.createElement(_reactSAlert2.default, { stack: { limit: 3 } }),
+                    this.state.loading && _react2.default.createElement(Loading, null),
                     _react2.default.createElement(ReduxFormWrapper, (0, _extends4.default)({}, this.props.formProps, { helpers: this.props.helpers, onSubmit: this.submitForm }))
                 );
             }
@@ -430,8 +453,6 @@ var ServiceBotBaseForm = function (_React$Component) {
     }]);
     return ServiceBotBaseForm;
 }(_react2.default.Component);
-// import Load from '../utilities/load.jsx';
-
 
 ServiceBotBaseForm = (0, _reactRedux.connect)(function (state) {
     return {

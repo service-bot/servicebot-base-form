@@ -3,6 +3,10 @@ import React from 'react';
 import Fetcher from "./Fetcher";
 import {reduxForm, SubmissionError, stopSubmit} from 'redux-form'
 import {connect} from "react-redux"
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+
 /*
 To use ServiceBot Base Form:
 Inputs->
@@ -41,6 +45,27 @@ Note:
 Form name is 'servicebotForm' if selector is needed
  */
 
+
+function Loading(props){
+    return(<div dangerouslySetInnerHTML={{__html: `
+
+<style>
+    .blur {
+        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+        -webkit-filter: url(#blur-filter);
+        filter: url(#blur-filter);
+        -webkit-filter: blur(3px);
+        filter: blur(3px);
+    }
+</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="blur-svg">
+        <defs>
+            <filter id="blur-filter">
+                <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+            </filter>
+        </defs>
+    </svg>`}}/>)
+}
 class ServiceBotBaseForm extends React.Component {
 
     constructor(props) {
@@ -116,6 +141,10 @@ class ServiceBotBaseForm extends React.Component {
         } catch (e) {
             console.error("Fetch error", e);
             self.setState({loading: false});
+            Alert.error(e);
+            if(this.props.handleFailure) {
+                self.props.handleFailure(e);
+            }
             throw "Error submitting"
         }
 
@@ -124,6 +153,7 @@ class ServiceBotBaseForm extends React.Component {
                 self.props.handleResponse(result)
             }
             self.setState({loading: false, success: true, submissionResponse: result});
+            this.state.successMessage && Alert.success(this.state.successMessage);
             if (this.props.successRoute) {
                 this.props.history.push(this.props.successRoute);
             }
@@ -134,6 +164,8 @@ class ServiceBotBaseForm extends React.Component {
             if(this.props.handleFailure) {
                 await self.props.handleFailure(result);
             }
+            Alert.error(result.error);
+
             // self.props.endSubmit({_error: result.error})
             throw result.error;
             if (this.props.failureRoute) {
@@ -213,6 +245,8 @@ class ServiceBotBaseForm extends React.Component {
 
             return (
                 <div>
+                    <Alert stack={{limit: 3}} />
+                    {this.state.loading && <Loading/>}
                 <ReduxFormWrapper {...this.props.formProps} helpers={this.props.helpers} onSubmit={this.submitForm} />
             </div>
         );
