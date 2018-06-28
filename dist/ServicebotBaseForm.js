@@ -98,7 +98,18 @@ Form name is 'servicebotForm' if selector is needed
 
 // import Load from '../utilities/load.jsx';
 function Loading(props) {
-    return _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: '\n\n<style>\n    .blur {\n        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=\'3\');\n        -webkit-filter: url(#blur-filter);\n        filter: url(#blur-filter);\n        -webkit-filter: blur(3px);\n        filter: blur(3px);\n    }\n</style>\n<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="blur-svg">\n        <defs>\n            <filter id="blur-filter">\n                <feGaussianBlur stdDeviation="3"></feGaussianBlur>\n            </filter>\n        </defs>\n    </svg>' } });
+    var style = {
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        "top": "0",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        "background-color": "rgba(162, 162, 162, 0.5)",
+        "z-index": 2
+    };
+    return _react2.default.createElement('div', { style: style });
 }
 
 var ServiceBotBaseForm = function (_React$Component) {
