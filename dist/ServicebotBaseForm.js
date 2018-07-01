@@ -56,6 +56,8 @@ require('react-s-alert/dist/s-alert-default.css');
 
 require('react-s-alert/dist/s-alert-css-effects/slide.css');
 
+require('../loader.css');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
@@ -96,21 +98,21 @@ Note:
 Form name is 'servicebotForm' if selector is needed
  */
 
-// import Load from '../utilities/load.jsx';
 function Loading(props) {
-    var style = {
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        "top": "0",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        "backgroundColor": "rgba(162, 162, 162, 0.5)",
-        "zIndex": 99999
-    };
-    return _react2.default.createElement('div', { style: style });
+    return _react2.default.createElement(
+        'div',
+        { className: 'loader' },
+        _react2.default.createElement(
+            'div',
+            { className: 'lds-ellipsis' },
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null)
+        )
+    );
 }
+// import Load from '../utilities/load.jsx';
 
 var ServiceBotBaseForm = function (_React$Component) {
     (0, _inherits3.default)(ServiceBotBaseForm, _React$Component);
