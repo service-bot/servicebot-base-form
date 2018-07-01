@@ -6,7 +6,7 @@ import {connect} from "react-redux"
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
-
+import '../loader.css';
 /*
 To use ServiceBot Base Form:
 Inputs->
@@ -47,18 +47,7 @@ Form name is 'servicebotForm' if selector is needed
 
 
 function Loading(props){
-    let style = {
-        position: "fixed",
-    width: "100%",
-    height: "100%",
-    "top": "0",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    "backgroundColor": "rgba(162, 162, 162, 0.5)",
-    "zIndex": 99999
-    }
-    return(<div style={style}></div>);
+    return(<div className="loader"><div className="lds-ellipsis"><div/><div/><div/><div/></div></div>);
 }
 class ServiceBotBaseForm extends React.Component {
 
