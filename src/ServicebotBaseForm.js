@@ -47,7 +47,7 @@ Form name is 'servicebotForm' if selector is needed
 
 
 function Loading(props){
-    return(<div className="loader"><div className="lds-ellipsis"><div/><div/><div/><div/></div></div>);
+    return(<div className="loader"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>);
 }
 class ServiceBotBaseForm extends React.Component {
 
