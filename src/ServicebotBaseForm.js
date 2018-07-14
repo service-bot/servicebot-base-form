@@ -214,7 +214,7 @@ class ServiceBotBaseForm extends React.Component {
 
     render() {
         if (this.state.initializing) {
-            return (<div>loading</div>);
+            return (<Loading/>);
 
         }
         if (this.state.success && !this.props.reShowForm) {
