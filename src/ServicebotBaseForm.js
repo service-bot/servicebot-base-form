@@ -75,7 +75,7 @@ class ServiceBotBaseForm extends React.Component {
     async submitForm(values) {
         let self = this;
         try {
-            self.setState({loading: true});
+            setTimeout(self.setState({loading: true}), 300);
             if (self.props.submissionPrep) {
                 let prepResults = await self.props.submissionPrep(values);
                 await self.makeCall(prepResults);
