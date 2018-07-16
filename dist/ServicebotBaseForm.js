@@ -104,7 +104,7 @@ function Loading(props) {
         { className: 'loader' },
         _react2.default.createElement(
             'div',
-            { className: 'lds-ellipsis' },
+            { 'class': 'lds-ellipsis' },
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
@@ -430,11 +430,7 @@ var ServiceBotBaseForm = function (_React$Component) {
         key: 'render',
         value: function render() {
             if (this.state.initializing) {
-                return _react2.default.createElement(
-                    'div',
-                    null,
-                    'loading'
-                );
+                return _react2.default.createElement(Loading, null);
             }
             if (this.state.success && !this.props.reShowForm) {
                 return _react2.default.createElement(
