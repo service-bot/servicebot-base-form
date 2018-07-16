@@ -153,7 +153,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 self = this;
                                 _context.prev = 1;
 
-                                self.setState({ loading: true });
+                                setTimeout(self.setState({ loading: true }), 300);
 
                                 if (!self.props.submissionPrep) {
                                     _context.next = 11;
