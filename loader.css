@@ -1,9 +1,18 @@
+.loader{
+    position: absolute;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+}
 .lds-ellipsis {
     display: inline-block;
     position: relative;
+    position: absolute;
     width: 64px;
     height: 64px;
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -14,7 +23,7 @@
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background: #fff;
+    background: #0033A0;;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
