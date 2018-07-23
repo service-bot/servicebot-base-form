@@ -104,7 +104,7 @@ function Loading(props) {
         { className: 'loader' },
         _react2.default.createElement(
             'div',
-            { className: 'lds-ellipsis' },
+            { 'class': 'lds-ellipsis' },
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
@@ -153,7 +153,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 self = this;
                                 _context.prev = 1;
 
-                                self.setState({ loading: true });
+                                setTimeout(self.setState({ loading: true }), 300);
 
                                 if (!self.props.submissionPrep) {
                                     _context.next = 11;
@@ -430,11 +430,7 @@ var ServiceBotBaseForm = function (_React$Component) {
         key: 'render',
         value: function render() {
             if (this.state.initializing) {
-                return _react2.default.createElement(
-                    'div',
-                    null,
-                    'loading'
-                );
+                return _react2.default.createElement(Loading, null);
             }
             if (this.state.success && !this.props.reShowForm) {
                 return _react2.default.createElement(
