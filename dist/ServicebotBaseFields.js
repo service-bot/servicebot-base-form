@@ -392,11 +392,7 @@ var iconToggleField = function (_React$Component3) {
                 { className: 'iconToggleField ' + (value || this.state.value && 'active') + ' ' + (this.state.hover && 'hover'),
                     style: style, 'data-tip': label,
                     onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff },
-                _react2.default.createElement(
-                    'span',
-                    { className: 'itf-icon', onClick: this.toggle },
-                    _react2.default.createElement('i', { className: 'fa fa-' + faIcon })
-                ),
+                _react2.default.createElement('span', { className: 'itf-icon', onClick: this.toggle }),
                 _react2.default.createElement(_reactTooltip2.default, { place: 'bottom', type: 'dark', effect: 'solid' }),
                 _react2.default.createElement('input', { className: 'hidden checkbox',
                     name: name,
