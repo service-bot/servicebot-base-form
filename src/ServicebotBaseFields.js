@@ -219,9 +219,7 @@ class iconToggleField extends React.Component {
             <div className={`iconToggleField ${value || this.state.value && 'active'} ${this.state.hover && 'hover'}`}
                  style={style} data-tip={label}
                  onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}>
-                <span className="itf-icon" onClick={this.toggle}>
-                    <i className={`fa fa-${faIcon}`}/>
-                </span>
+                <span className="itf-icon" onClick={this.toggle}/>
                 <ReactTooltip place="bottom" type="dark" effect="solid"/>
                 <input className="hidden checkbox"
                        name={name}
