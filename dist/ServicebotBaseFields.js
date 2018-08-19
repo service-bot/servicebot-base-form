@@ -309,7 +309,11 @@ var OnOffToggleField = function (_React$Component2) {
                     'div',
                     { style: input.disabled && { "cursor": "not-allowed" }, className: 'iconToggleField slideToggle ' + (input.value && 'active') + ' ' + (!input.disabled && this.state.hover && 'hover'),
                         'data-tip': label, onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff, onClick: this.toggle },
-                    _react2.default.createElement('span', { style: style, className: 'itf-icon' }),
+                    _react2.default.createElement(
+                        'span',
+                        { style: style, className: 'itf-icon' },
+                        _react2.default.createElement('i', { className: 'fa fa-' + (faIcon || "check") })
+                    ),
                     _react2.default.createElement('input', { className: 'hidden checkbox',
                         name: input.name,
                         value: input.value || false,
