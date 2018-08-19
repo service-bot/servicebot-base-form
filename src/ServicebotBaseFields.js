@@ -162,7 +162,9 @@ class OnOffToggleField extends React.Component {
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div style={input.disabled && ({"cursor" : "not-allowed"})} className={`iconToggleField slideToggle ${input.value && 'active'} ${!input.disabled && this.state.hover && 'hover'}`}
                      data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
-                    <span style={style} className="itf-icon"/>
+                    <span style={style} className="itf-icon">
+                        <i className={`fa fa-${faIcon || "check"}`}/>
+                    </span>
                     {/*<ReactTooltip place="bottom" type="dark" effect="solid"/>*/}
                     <input className="hidden checkbox"
                            name={input.name}
