@@ -115,7 +115,18 @@ pipeline {
                                 '''
                           }
             }
+            dir('servicebot-login-embed'){
+                                          git(url: "git@github.com:service-bot/servicebot-login-embed.git", branch: 'master', credentialsId: "${gitCredentials}")
 
+                                        sshagent(credentials: ["${gitCredentials}"]){
+                                         sh '''
+                                            npm install ''' + getRepo() + '''@latest
+                                            git add .
+                                            git commit -m "Jenkins updating version of" ``` + getRepo() + ```
+                                            git push origin master
+                                            '''
+                  }
+            }
         }
     }
 
