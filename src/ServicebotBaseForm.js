@@ -118,13 +118,17 @@ class ServiceBotBaseForm extends React.Component {
         let self = this;
         let result = null;
         let request = null;
+        let alertOptions = {
+            offset: 16,
+            timeout: 5800,
+        };
         try {
             request = this.getRequest(self.state.submissionRequest.method, values);
             result = await Fetcher(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
         } catch (e) {
             console.error("Fetch error", e);
             self.setState({loading: false});
-            Alert.error(e);
+            Alert.error(e, alertOptions);
             if(this.props.handleFailure) {
                 self.props.handleFailure(e);
             }
@@ -136,7 +140,7 @@ class ServiceBotBaseForm extends React.Component {
                 self.props.handleResponse(result)
             }
             self.setState({loading: false, success: true, submissionResponse: result});
-            this.state.successMessage && Alert.success(this.state.successMessage);
+            this.state.successMessage && Alert.success(this.state.successMessage, alertOptions);
             if (this.props.successRoute) {
                 this.props.history.push(this.props.successRoute);
             }
@@ -147,7 +151,7 @@ class ServiceBotBaseForm extends React.Component {
             if(this.props.handleFailure) {
                 await self.props.handleFailure(result);
             }
-            Alert.error(result.error);
+            Alert.error(result.error, alertOptions);
 
             // self.props.endSubmit({_error: result.error})
             throw result.error;

@@ -84,7 +84,8 @@ var widgetField = function widgetField(props) {
 };
 
 var inputField = function inputField(props) {
-    var input = props.input,
+    var className = props.className,
+        input = props.input,
         placeholder = props.placeholder,
         label = props.label,
         type = props.type,
@@ -94,8 +95,10 @@ var inputField = function inputField(props) {
         warning = _props$meta2.warning;
 
     var autofocus = props && props.willAutoFocus;
-
-    var formControlClass = 'form-control ' + (touched && error && 'has-error') + ' ' + (touched && warning && 'has-warning');
+    if (!className) {
+        className = 'default';
+    }
+    var formControlClass = 'form-control ' + className + '-input ' + (touched && error && 'has-error') + ' ' + (touched && warning && 'has-warning');
 
     var getInputField = function getInputField(type) {
         switch (type) {
@@ -111,10 +114,10 @@ var inputField = function inputField(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'form-group form-group-flex' },
+        { className: 'form-group form-group-flex ' + className + '-group' },
         label && type !== 'hidden' && _react2.default.createElement(
             'label',
-            { className: 'control-label form-label-flex-md' },
+            { className: 'control-label form-label-flex-md ' + className + '-label' },
             label
         ),
         _react2.default.createElement(
@@ -123,11 +126,11 @@ var inputField = function inputField(props) {
             getInputField(type),
             touched && (error && _react2.default.createElement(
                 'span',
-                { className: 'form-error' },
+                { className: 'form-error ' + className + '-error' },
                 error
             ) || warning && _react2.default.createElement(
                 'span',
-                { className: 'form-warning' },
+                { className: 'form-warning ' + className + '-warning' },
                 warning
             ))
         )
@@ -309,11 +312,7 @@ var OnOffToggleField = function (_React$Component2) {
                     'div',
                     { style: input.disabled && { "cursor": "not-allowed" }, className: 'iconToggleField slideToggle ' + (input.value && 'active') + ' ' + (!input.disabled && this.state.hover && 'hover'),
                         'data-tip': label, onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff, onClick: this.toggle },
-                    _react2.default.createElement(
-                        'span',
-                        { style: style, className: 'itf-icon' },
-                        _react2.default.createElement('i', { className: 'fa fa-' + (faIcon || "check") })
-                    ),
+                    _react2.default.createElement('span', { style: style, className: 'itf-icon' }),
                     _react2.default.createElement('input', { className: 'hidden checkbox',
                         name: input.name,
                         value: input.value || false,
@@ -399,7 +398,7 @@ var iconToggleField = function (_React$Component3) {
                 _react2.default.createElement(
                     'span',
                     { className: 'itf-icon', onClick: this.toggle },
-                    _react2.default.createElement('i', { className: 'fa fa-' + faIcon })
+                    _react2.default.createElement('i', { className: 'fa fa-' + (faIcon || "check") })
                 ),
                 _react2.default.createElement(_reactTooltip2.default, { place: 'bottom', type: 'dark', effect: 'solid' }),
                 _react2.default.createElement('input', { className: 'hidden checkbox',

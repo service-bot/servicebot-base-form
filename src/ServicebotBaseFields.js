@@ -26,10 +26,12 @@ let widgetField = props => {
 };
 
 let inputField = props => {
-    let {input, placeholder, label, type, meta: {touched, error, warning}} = props;
+    let {className, input, placeholder, label, type, meta: {touched, error, warning}} = props;
     let autofocus = props && props.willAutoFocus;
-
-    let formControlClass = `form-control ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
+    if(!className){
+        className = 'default'
+    }
+    let formControlClass = `form-control ${className}-input ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
 
     let getInputField = (type)=>{
         switch(type){
@@ -50,11 +52,11 @@ let inputField = props => {
     };
 
     return(
-        <div className={`form-group form-group-flex`}>
-            {(label && type !== 'hidden') && <label className="control-label form-label-flex-md">{label}</label>}
+        <div className={`form-group form-group-flex ${className}-group`}>
+            {(label && type !== 'hidden') && <label className={`control-label form-label-flex-md ${className}-label`}>{label}</label>}
             <div className="form-input-flex">
                 {getInputField(type)}
-                {touched && ((error && <span className="form-error">{error}</span>) || (warning && <span className="form-warning">{warning}</span>)) }
+                {touched && ((error && <span className={`form-error ${className}-error`}>{error}</span>) || (warning && <span className={`form-warning ${className}-warning`}>{warning}</span>)) }
             </div>
         </div>
     );
@@ -162,9 +164,7 @@ class OnOffToggleField extends React.Component {
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div style={input.disabled && ({"cursor" : "not-allowed"})} className={`iconToggleField slideToggle ${input.value && 'active'} ${!input.disabled && this.state.hover && 'hover'}`}
                      data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
-                    <span style={style} className="itf-icon">
-                        <i className={`fa fa-${faIcon || "check"}`}/>
-                    </span>
+                    <span style={style} className="itf-icon"/>
                     {/*<ReactTooltip place="bottom" type="dark" effect="solid"/>*/}
                     <input className="hidden checkbox"
                            name={input.name}
@@ -222,7 +222,7 @@ class iconToggleField extends React.Component {
                  style={style} data-tip={label}
                  onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}>
                 <span className="itf-icon" onClick={this.toggle}>
-                    <i className={`fa fa-${faIcon}`}/>
+                    <i className={`fa fa-${faIcon || "check"}`}/>
                 </span>
                 <ReactTooltip place="bottom" type="dark" effect="solid"/>
                 <input className="hidden checkbox"
