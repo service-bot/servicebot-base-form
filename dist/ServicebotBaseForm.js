@@ -153,7 +153,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 self = this;
                                 _context.prev = 1;
 
-                                self.setState({ loading: true });
+                                setTimeout(self.setState({ loading: true }), 300);
 
                                 if (!self.props.submissionPrep) {
                                     _context.next = 11;
@@ -453,6 +453,11 @@ var ServiceBotBaseForm = function (_React$Component) {
                 return _react2.default.createElement(
                     'div',
                     null,
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'hello2'
+                    ),
                     _react2.default.createElement(_reactSAlert2.default, { stack: { limit: 3 } }),
                     this.state.loading && _react2.default.createElement(Loading, null),
                     _react2.default.createElement(ReduxFormWrapper, (0, _extends4.default)({}, this.props.formProps, { helpers: this.props.helpers, onSubmit: this.submitForm }))

@@ -228,6 +228,7 @@ class ServiceBotBaseForm extends React.Component {
 
             return (
                 <div>
+                    <p>hello2</p>
                     <Alert stack={{limit: 3}} />
                     {this.state.loading && <Loading/>}
                 <ReduxFormWrapper {...this.props.formProps} helpers={this.props.helpers} onSubmit={this.submitForm} />
