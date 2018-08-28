@@ -26,10 +26,10 @@ let widgetField = props => {
 };
 
 let inputField = props => {
-    let {input, placeholder, label, type, meta: {touched, error, warning}} = props;
+    let {className, input, placeholder, label, type, meta: {touched, error, warning}} = props;
     let autofocus = props && props.willAutoFocus;
 
-    let formControlClass = `form-control ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
+    let formControlClass = `form-control ${className}-input ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
 
     let getInputField = (type)=>{
         switch(type){
@@ -50,11 +50,11 @@ let inputField = props => {
     };
 
     return(
-        <div className={`form-group form-group-flex`}>
-            {(label && type !== 'hidden') && <label className="control-label form-label-flex-md">{label}</label>}
+        <div className={`form-group form-group-flex ${className}-group`}>
+            {(label && type !== 'hidden') && <label className={`control-label form-label-flex-md ${className}-label`}>{label}</label>}
             <div className="form-input-flex">
                 {getInputField(type)}
-                {touched && ((error && <span className="form-error">{error}</span>) || (warning && <span className="form-warning">{warning}</span>)) }
+                {touched && ((error && <span className={`form-error ${className}-error`}>{error}</span>) || (warning && <span className={`form-warning ${className}-warning`}>{warning}</span>)) }
             </div>
         </div>
     );
