@@ -28,7 +28,9 @@ let widgetField = props => {
 let inputField = props => {
     let {className, input, placeholder, label, type, meta: {touched, error, warning}} = props;
     let autofocus = props && props.willAutoFocus;
-
+    if(!className){
+        className = 'default'
+    }
     let formControlClass = `form-control ${className}-input ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
 
     let getInputField = (type)=>{
