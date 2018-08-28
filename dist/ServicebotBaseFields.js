@@ -95,7 +95,9 @@ var inputField = function inputField(props) {
         warning = _props$meta2.warning;
 
     var autofocus = props && props.willAutoFocus;
-
+    if (!className) {
+        className = 'default';
+    }
     var formControlClass = 'form-control ' + className + '-input ' + (touched && error && 'has-error') + ' ' + (touched && warning && 'has-warning');
 
     var getInputField = function getInputField(type) {
