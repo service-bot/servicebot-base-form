@@ -232,7 +232,7 @@ var ServiceBotBaseForm = function (_React$Component) {
         key: 'makeCall',
         value: function () {
             var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(values) {
-                var self, result, request, alertOptions;
+                var self, result, request;
                 return _regenerator2.default.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -240,36 +240,32 @@ var ServiceBotBaseForm = function (_React$Component) {
                                 self = this;
                                 result = null;
                                 request = null;
-                                alertOptions = {
-                                    offset: 16,
-                                    timeout: 5800
-                                };
-                                _context2.prev = 4;
+                                _context2.prev = 3;
 
                                 request = this.getRequest(self.state.submissionRequest.method, values);
-                                _context2.next = 8;
+                                _context2.next = 7;
                                 return (0, _Fetcher2.default)(self.state.submissionRequest.url, self.state.submissionRequest.method, values, request);
 
-                            case 8:
+                            case 7:
                                 result = _context2.sent;
-                                _context2.next = 18;
+                                _context2.next = 17;
                                 break;
 
-                            case 11:
-                                _context2.prev = 11;
-                                _context2.t0 = _context2['catch'](4);
+                            case 10:
+                                _context2.prev = 10;
+                                _context2.t0 = _context2['catch'](3);
 
                                 console.error("Fetch error", _context2.t0);
                                 self.setState({ loading: false });
-                                _reactSAlert2.default.error(_context2.t0, alertOptions);
+                                _reactSAlert2.default.error(_context2.t0);
                                 if (this.props.handleFailure) {
                                     self.props.handleFailure(_context2.t0);
                                 }
                                 throw "Error submitting";
 
-                            case 18:
+                            case 17:
                                 if (result.error) {
-                                    _context2.next = 25;
+                                    _context2.next = 24;
                                     break;
                                 }
 
@@ -277,37 +273,37 @@ var ServiceBotBaseForm = function (_React$Component) {
                                     self.props.handleResponse(result);
                                 }
                                 self.setState({ loading: false, success: true, submissionResponse: result });
-                                this.state.successMessage && _reactSAlert2.default.success(this.state.successMessage, alertOptions);
+                                this.state.successMessage && _reactSAlert2.default.success(this.state.successMessage);
                                 if (this.props.successRoute) {
                                     this.props.history.push(this.props.successRoute);
                                 }
-                                _context2.next = 33;
+                                _context2.next = 32;
                                 break;
 
-                            case 25:
+                            case 24:
                                 console.error("submission error", result.error);
                                 self.setState({ loading: false });
 
                                 if (!this.props.handleFailure) {
-                                    _context2.next = 30;
+                                    _context2.next = 29;
                                     break;
                                 }
 
-                                _context2.next = 30;
+                                _context2.next = 29;
                                 return self.props.handleFailure(result);
 
-                            case 30:
-                                _reactSAlert2.default.error(result.error, alertOptions);
+                            case 29:
+                                _reactSAlert2.default.error(result.error);
 
                                 // self.props.endSubmit({_error: result.error})
                                 throw result.error;
 
-                            case 33:
+                            case 32:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[4, 11]]);
+                }, _callee2, this, [[3, 10]]);
             }));
 
             function makeCall(_x3) {
@@ -457,11 +453,6 @@ var ServiceBotBaseForm = function (_React$Component) {
                 return _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement(
-                        'p',
-                        null,
-                        'hello2'
-                    ),
                     _react2.default.createElement(_reactSAlert2.default, { stack: { limit: 3 } }),
                     this.state.loading && _react2.default.createElement(Loading, null),
                     _react2.default.createElement(ReduxFormWrapper, (0, _extends4.default)({}, this.props.formProps, { helpers: this.props.helpers, onSubmit: this.submitForm }))
