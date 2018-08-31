@@ -31,7 +31,7 @@ let inputField = props => {
     if(!className){
         className = 'default'
     }
-    let formControlClass = `form-control ${className}-input ${touched && error && 'has-error'} ${touched && warning && 'has-warning'}`;
+    let formControlClass = `form-control ${className}-input _input-${className} ${touched && error ? 'has-error' : ''} ${touched && warning ? 'has-warning' : ''}`;
 
     let getInputField = (type)=>{
         switch(type){
@@ -52,11 +52,17 @@ let inputField = props => {
     };
 
     return(
-        <div className={`form-group form-group-flex ${className}-group`}>
-            {(label && type !== 'hidden') && <label className={`control-label form-label-flex-md ${className}-label`}>{label}</label>}
-            <div className="form-input-flex">
+        <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
+            {(label && type !== 'hidden') && <label className={`control-label form-label-flex-md ${className}-label _label-${className}`}>{label}</label>}
+            <div className={`form-input-flex _input-container-${className}`}>
                 {getInputField(type)}
-                {touched && ((error && <span className={`form-error ${className}-error`}>{error}</span>) || (warning && <span className={`form-warning ${className}-warning`}>{warning}</span>)) }
+                {touched &&
+                    ((error &&
+                        <span className={`form-error _form-error _form-error-${className}`}>{error}</span>) ||
+                    (warning &&
+                        <span className={`form-warning _form-error _form-warning-${className}`}>{warning}</span>
+                    ))
+                }
             </div>
         </div>
     );
