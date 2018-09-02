@@ -218,9 +218,13 @@ class ServiceBotBaseForm extends React.Component {
         }
         if (this.state.success && !this.props.reShowForm) {
             return (
-                <div className="p-20">
-                <p><i className="fa fa-check" aria-hidden="true"/><strong>{this.state.successMessage}</strong></p>
-            </div>
+                <div className={`_success-ui`}>
+                    <i className="fa fa-check" aria-hidden="true"/> //todo: cleanup and remove fontawesome
+                    {this.props.cssIcon && <span className={`_css-icon-${this.props.cssIcon}`}/>} //todo: add default css icon
+                    {this.props.svgIcon && <img className={`_svg-icon`} src={`data:image/svg+xml,${this.props.svgIcon}`}/>}
+                    {this.props.successHeading && <h2 className={`_success-heading`}>{this.props.successHeading}</h2>}
+                    <span className={`_success-message`}>{this.state.successMessage}</span>
+                </div>
         );
         } else {
             let ReduxFormWrapper = this.state.reduxForm;
