@@ -104,7 +104,7 @@ function Loading(props) {
         { className: 'loader' },
         _react2.default.createElement(
             'div',
-            { 'class': 'lds-ellipsis' },
+            { className: 'lds-ellipsis' },
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
             _react2.default.createElement('div', null),
