@@ -435,16 +435,21 @@ var ServiceBotBaseForm = function (_React$Component) {
             if (this.state.success && !this.props.reShowForm) {
                 return _react2.default.createElement(
                     'div',
-                    { className: 'p-20' },
+                    { className: '_success-ui' },
+                    _react2.default.createElement('i', { className: 'fa fa-check', 'aria-hidden': 'true' }),
+                    ' //todo: cleanup and remove fontawesome',
+                    this.props.cssIcon && _react2.default.createElement('span', { className: '_css-icon-' + this.props.cssIcon }),
+                    ' //todo: add default css icon',
+                    this.props.svgIcon && _react2.default.createElement('img', { className: '_svg-icon', src: 'data:image/svg+xml,' + this.props.svgIcon }),
+                    this.props.successHeading && _react2.default.createElement(
+                        'h2',
+                        { className: '_success-heading' },
+                        this.props.successHeading
+                    ),
                     _react2.default.createElement(
-                        'p',
-                        null,
-                        _react2.default.createElement('i', { className: 'fa fa-check', 'aria-hidden': 'true' }),
-                        _react2.default.createElement(
-                            'strong',
-                            null,
-                            this.state.successMessage
-                        )
+                        'span',
+                        { className: '_success-message' },
+                        this.state.successMessage
                     )
                 );
             } else {
