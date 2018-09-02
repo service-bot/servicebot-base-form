@@ -98,7 +98,7 @@ var inputField = function inputField(props) {
     if (!className) {
         className = 'default';
     }
-    var formControlClass = 'form-control ' + className + '-input _input-' + className + ' ' + (touched && error ? 'has-error' : '') + ' ' + (touched && warning ? 'has-warning' : '');
+    var formControlClass = 'form-control ' + className + '-input _input- _input-' + className + ' ' + (touched && error ? 'has-error' : '') + ' ' + (touched && warning ? 'has-warning' : '');
 
     var getInputField = function getInputField(type) {
         switch (type) {
@@ -117,20 +117,20 @@ var inputField = function inputField(props) {
         { className: 'form-group form-group-flex sb-form-group _group-' + className },
         label && type !== 'hidden' && _react2.default.createElement(
             'label',
-            { className: 'control-label form-label-flex-md ' + className + '-label _label-' + className },
+            { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
             label
         ),
         _react2.default.createElement(
             'div',
-            { className: 'form-input-flex _input-container-' + className },
+            { className: 'form-input-flex _input-container- _input-container-' + className },
             getInputField(type),
             touched && (error && _react2.default.createElement(
                 'span',
-                { className: 'form-error _form-error _form-error-' + className },
+                { className: 'form-error _form-error- _form-error-' + className },
                 error
             ) || warning && _react2.default.createElement(
                 'span',
-                { className: 'form-warning _form-error _form-warning-' + className },
+                { className: 'form-warning _form-error- _form-warning-' + className },
                 warning
             ))
         )
