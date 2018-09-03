@@ -219,8 +219,8 @@ class ServiceBotBaseForm extends React.Component {
         if (this.state.success && !this.props.reShowForm) {
             return (
                 <div className={`_success-ui`}>
-                    <i className="fa fa-check" aria-hidden="true"/> //todo: cleanup and remove fontawesome
-                    {this.props.cssIcon && <span className={`_css-icon-${this.props.cssIcon}`}/>} //todo: add default css icon
+                    <i className="fa fa-check" aria-hidden="true"/>
+                    {this.props.cssIcon && <span className={`_css-icon-${this.props.cssIcon}`}/>}
                     {this.props.svgIcon && <img className={`_svg-icon`} src={`data:image/svg+xml,${this.props.svgIcon}`}/>}
                     {this.props.successHeading && <h2 className={`_success-heading`}>{this.props.successHeading}</h2>}
                     <span className={`_success-message`}>{this.state.successMessage}</span>
