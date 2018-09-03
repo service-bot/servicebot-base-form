@@ -124,10 +124,12 @@ class ServiceBotBaseForm extends React.Component {
         } catch (e) {
             console.error("Fetch error", e);
             self.setState({loading: false});
-            Alert.error(e);
+            let error = e;
             if(this.props.handleFailure) {
-                self.props.handleFailure(e);
+                error = self.props.handleFailure(e) || error;
             }
+            Alert.error(error);
+
             throw "Error submitting"
         }
 
