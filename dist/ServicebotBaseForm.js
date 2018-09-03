@@ -437,9 +437,7 @@ var ServiceBotBaseForm = function (_React$Component) {
                     'div',
                     { className: '_success-ui' },
                     _react2.default.createElement('i', { className: 'fa fa-check', 'aria-hidden': 'true' }),
-                    ' //todo: cleanup and remove fontawesome',
                     this.props.cssIcon && _react2.default.createElement('span', { className: '_css-icon-' + this.props.cssIcon }),
-                    ' //todo: add default css icon',
                     this.props.svgIcon && _react2.default.createElement('img', { className: '_svg-icon', src: 'data:image/svg+xml,' + this.props.svgIcon }),
                     this.props.successHeading && _react2.default.createElement(
                         'h2',
