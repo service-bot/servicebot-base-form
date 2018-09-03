@@ -4,8 +4,9 @@ import Fetcher from "./Fetcher";
 import {reduxForm, SubmissionError, stopSubmit} from 'redux-form'
 import {connect} from "react-redux"
 import Alert from 'react-s-alert';
-import 'react-s-alert/dist/s-alert-default.css';
-import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+// import 'react-s-alert/dist/s-alert-default.css';
+// import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import '../style.css';
 import '../loader.css';
 /*
 To use ServiceBot Base Form:

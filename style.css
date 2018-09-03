@@ -1,0 +1,8 @@
+.s-alert-box {
+    color: white;
+    background-color: red;
+    padding: 10px 20px;
+    border-radius: 3px;
+    display: block;
+    margin-bottom: 8px;
+}
