@@ -52,9 +52,7 @@ var _reactSAlert = require('react-s-alert');
 
 var _reactSAlert2 = _interopRequireDefault(_reactSAlert);
 
-require('react-s-alert/dist/s-alert-default.css');
-
-require('react-s-alert/dist/s-alert-css-effects/slide.css');
+require('../style.css');
 
 require('../loader.css');
 
@@ -98,6 +96,10 @@ Note:
 Form name is 'servicebotForm' if selector is needed
  */
 
+// import 'react-s-alert/dist/s-alert-default.css';
+// import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+
+// import Load from '../utilities/load.jsx';
 function Loading(props) {
     return _react2.default.createElement(
         'div',
@@ -112,7 +114,6 @@ function Loading(props) {
         )
     );
 }
-// import Load from '../utilities/load.jsx';
 
 var ServiceBotBaseForm = function (_React$Component) {
     (0, _inherits3.default)(ServiceBotBaseForm, _React$Component);
