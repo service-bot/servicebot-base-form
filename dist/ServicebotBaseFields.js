@@ -48,7 +48,9 @@ var _currencySymbolMap2 = _interopRequireDefault(_currencySymbolMap);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var widgetField = function widgetField(props) {
-    var widget = props.widget,
+    var className = props.className,
+        name = props.name,
+        widget = props.widget,
         label = props.label,
         type = props.type,
         _props$meta = props.meta,
@@ -57,10 +59,13 @@ var widgetField = function widgetField(props) {
         warning = _props$meta.warning;
 
     var WidgetComponent = widget;
+    if (!className) {
+        className = name;
+    }
 
     return _react2.default.createElement(
         'div',
-        { className: 'form-group form-group-flex' },
+        { className: 'sb-form-group _group-' + className },
         label && type !== 'hidden' && (type === 'text' || type === 'secure-string') && _react2.default.createElement(
             'label',
             { className: 'control-label form-label-flex-md' },
