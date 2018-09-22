@@ -13,7 +13,7 @@ let widgetField = props => {
     let WidgetComponent = widget;
 
     return (
-        <div className={`form-group form-group-flex`}>
+        <div className={`form-group form-group-flex sb-form-group`}>
             {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="control-label form-label-flex-md">{label}</label>}
             <div className="form-input-flex">
                 <WidgetComponent
@@ -99,7 +99,7 @@ class selectField extends React.Component {
     render() {
         let {input, label, type, options, valueKey, labelKey, meta: {touched, error, warning}} = this.props;
         return (
-            <div className="form-group form-group-flex">
+            <div className="form-group form-group-flex sb-form-group">
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div className="form-input-flex">
                     <select className="form-control" {...input} placeholder={label}>
@@ -166,7 +166,7 @@ class OnOffToggleField extends React.Component {
         }
 
         return(
-            <div className="form-group form-group-flex">
+            <div className="form-group form-group-flex sb-form-group">
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div style={input.disabled && ({"cursor" : "not-allowed"})} className={`iconToggleField slideToggle ${input.value && 'active'} ${!input.disabled && this.state.hover && 'hover'}`}
                      data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
@@ -262,7 +262,7 @@ class priceField extends React.Component {
         let prefix = options.currency ? getSymbolFromCurrency(options.currency.value) : '';
         let price = isCents ?  (value/100) : value;
         return (
-            <div className={`form-group form-group-flex`}>
+            <div className={`form-group form-group-flex sb-form-group`}>
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div className="form-input-flex">
                     <NumberFormat className="form-control" name={name}
