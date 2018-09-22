@@ -60,7 +60,7 @@ var widgetField = function widgetField(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'form-group form-group-flex' },
+        { className: 'form-group form-group-flex sb-form-group' },
         label && type !== 'hidden' && (type === 'text' || type === 'secure-string') && _react2.default.createElement(
             'label',
             { className: 'control-label form-label-flex-md' },
@@ -199,7 +199,7 @@ var selectField = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex' },
+                { className: 'form-group form-group-flex sb-form-group' },
                 label && _react2.default.createElement(
                     'label',
                     { className: 'control-label form-label-flex-md' },
@@ -302,7 +302,7 @@ var OnOffToggleField = function (_React$Component2) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex' },
+                { className: 'form-group form-group-flex sb-form-group' },
                 label && _react2.default.createElement(
                     'label',
                     { className: 'control-label form-label-flex-md' },
@@ -457,7 +457,7 @@ var priceField = function (_React$Component4) {
             var price = isCents ? value / 100 : value;
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex' },
+                { className: 'form-group form-group-flex sb-form-group' },
                 label && _react2.default.createElement(
                     'label',
                     { className: 'control-label form-label-flex-md' },
