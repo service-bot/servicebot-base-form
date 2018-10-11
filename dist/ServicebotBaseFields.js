@@ -41,10 +41,6 @@ var _toCents = require('./toCents');
 
 var _reactRedux = require('react-redux');
 
-var _currencySymbolMap = require('currency-symbol-map');
-
-var _currencySymbolMap2 = _interopRequireDefault(_currencySymbolMap);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var widgetField = function widgetField(props) {
@@ -441,6 +437,7 @@ var priceField = function (_React$Component4) {
         value: function render() {
             var _props6 = this.props,
                 options = _props6.options,
+                currency = _props6.currency,
                 isCents = _props6.isCents,
                 _props6$input = _props6.input,
                 name = _props6$input.name,
@@ -453,8 +450,9 @@ var priceField = function (_React$Component4) {
                 error = _props6$meta.error,
                 warning = _props6$meta.warning;
 
-            var prefix = options.currency ? (0, _currencySymbolMap2.default)(options.currency.value) : '';
             var price = isCents ? value / 100 : value;
+            var formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || options.currency && options.currency.value || "USD" }).formatToParts(Number(price));
+            var prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
             return _react2.default.createElement(
                 'div',
                 { className: 'form-group form-group-flex sb-form-group' },
