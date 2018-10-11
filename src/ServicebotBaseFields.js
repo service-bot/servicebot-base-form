@@ -3,7 +3,6 @@ import NumberFormat from 'react-number-format';
 import ReactTooltip from 'react-tooltip'
 import {toCents} from "./toCents"
 import {connect} from 'react-redux';
-import getSymbolFromCurrency from 'currency-symbol-map'
 
 
 
@@ -258,9 +257,10 @@ class priceField extends React.Component {
     }
 
     render() {
-        let {options, isCents, input:{name, value, onChange}, label, type, meta: {touched, error, warning}} = this.props;
-        let prefix = options.currency ? getSymbolFromCurrency(options.currency.value) : '';
+        let {options, currency, isCents, input:{name, value, onChange}, label, type, meta: {touched, error, warning}} = this.props;
         let price = isCents ?  (value/100) : value;
+        let formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts(Number(price));
+        let prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
         return (
             <div className={`form-group form-group-flex`}>
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
