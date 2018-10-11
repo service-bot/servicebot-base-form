@@ -6,3 +6,6 @@
     display: block;
     margin-bottom: 8px;
 }
+.s-alert-success{
+    background-color: #16cfa5;
+}

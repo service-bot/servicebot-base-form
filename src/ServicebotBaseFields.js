@@ -12,7 +12,7 @@ let widgetField = props => {
     let WidgetComponent = widget;
 
     return (
-        <div className={`form-group form-group-flex`}>
+        <div className={`form-group form-group-flex sb-form-group`}>
             {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="control-label form-label-flex-md">{label}</label>}
             <div className="form-input-flex">
                 <WidgetComponent
@@ -98,7 +98,7 @@ class selectField extends React.Component {
     render() {
         let {input, label, type, options, valueKey, labelKey, meta: {touched, error, warning}} = this.props;
         return (
-            <div className="form-group form-group-flex">
+            <div className="form-group form-group-flex sb-form-group">
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div className="form-input-flex">
                     <select className="form-control" {...input} placeholder={label}>
@@ -165,7 +165,7 @@ class OnOffToggleField extends React.Component {
         }
 
         return(
-            <div className="form-group form-group-flex">
+            <div className="form-group form-group-flex sb-form-group">
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div style={input.disabled && ({"cursor" : "not-allowed"})} className={`iconToggleField slideToggle ${input.value && 'active'} ${!input.disabled && this.state.hover && 'hover'}`}
                      data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
@@ -262,7 +262,7 @@ class priceField extends React.Component {
         let formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts(Number(price));
         let prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
         return (
-            <div className={`form-group form-group-flex`}>
+            <div className={`form-group form-group-flex sb-form-group`}>
                 {label && <label className="control-label form-label-flex-md">{label}</label>}
                 <div className="form-input-flex">
                     <NumberFormat className="form-control" name={name}
