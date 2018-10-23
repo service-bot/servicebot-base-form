@@ -1,6 +1,6 @@
 {
   "name": "servicebot-base-form",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "dependencies": {
     "currency-symbol-map": "^4.0.4",
     "react": "^16.4.0",
