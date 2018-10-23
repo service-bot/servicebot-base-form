@@ -96,12 +96,16 @@ class selectField extends React.Component {
     }
 
     render() {
-        let {input, label, type, options, valueKey, labelKey, meta: {touched, error, warning}} = this.props;
+        let {className, input, label, type, options, valueKey, labelKey, meta: {touched, error, warning}} = this.props;
+        if(!className){
+            className = 'default'
+        }
+        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
         return (
-            <div className="form-group form-group-flex sb-form-group">
-                {label && <label className="control-label form-label-flex-md">{label}</label>}
-                <div className="form-input-flex">
-                    <select className="form-control" {...input} placeholder={label}>
+            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
+                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
+                <div className={`form-input-flex _input-container- _input-container-${className}`}>
+                    <select className={formControlClass} {...input} placeholder={label}>
                         {options && options.map((option, index) =>
                             <option key={index} value={valueKey ? option[valueKey] : option.id}>
                                 {labelKey ? option[labelKey] : option.name}
@@ -257,15 +261,19 @@ class priceField extends React.Component {
     }
 
     render() {
-        let {options, currency, isCents, input:{name, value, onChange}, label, type, meta: {touched, error, warning}} = this.props;
+        let {className, options, currency, isCents, input:{name, value, onChange}, label, type, meta: {touched, error, warning}} = this.props;
+        if(!className){
+            className = 'default'
+        }
+        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
         let price = isCents ?  (value/100) : value;
         let formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts(Number(price));
         let prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
         return (
-            <div className={`form-group form-group-flex sb-form-group`}>
-                {label && <label className="control-label form-label-flex-md">{label}</label>}
-                <div className="form-input-flex">
-                    <NumberFormat className="form-control" name={name}
+            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
+                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
+                <div className={`form-input-flex _input-container- _input-container-${className}`}>
+                    <NumberFormat className={formControlClass} name={name}
                                   prefix={prefix} decimalSeparator="." thousandSeparator="," decimalScale="2"
                                   allowNegative={false}
                                   fixedDecimalScale={false}
