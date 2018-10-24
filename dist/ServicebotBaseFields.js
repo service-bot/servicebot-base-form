@@ -261,9 +261,11 @@ var OnOffToggleField = function (_React$Component2) {
     (0, _createClass3.default)(OnOffToggleField, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var initialValue = this.props.input.value || false;
-            if (this.props.input.onChange) {
-                this.props.input.onChange(initialValue);
+            if (!this.props.disableOnMount) {
+                var initialValue = this.props.input.value || false;
+                if (this.props.input.onChange) {
+                    this.props.input.onChange(initialValue);
+                }
             }
         }
     }, {
