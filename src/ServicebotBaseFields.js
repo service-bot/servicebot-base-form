@@ -25,30 +25,32 @@ let widgetField = props => {
 };
 
 let inputField = props => {
-    let {className, input, placeholder, label, type, meta: {touched, error, warning}} = props;
+    let {className, inputRef, input, placeholder, label, type, meta: {touched, error, warning}} = props;
     let autofocus = props && props.willAutoFocus;
     if(!className){
         className = 'default'
     }
     let formControlClass = `form-control ${className}-input _input- _input-${className} ${touched && error ? 'has-error' : ''} ${touched && warning ? 'has-warning' : ''}`;
-
+    
     let getInputField = (type)=>{
         switch(type){
             case 'textarea':
                 return (
-                    <textarea className={formControlClass} {...input} placeholder={label} autoFocus={autofocus}/>
+                    <textarea className={formControlClass} {...input} placeholder={label} autoFocus={autofocus} ref={inputRef}/>
                 );
                 break;
             case 'checkbox':
                 return (
-                    <input className={`${formControlClass} checkbox`} {...input} placeholder={label} type={type} autoFocus={autofocus}/>
+                    <input className={`${formControlClass} checkbox`} {...input} placeholder={label} type={type} autoFocus={autofocus} ref={inputRef}/>
                 );
             default:
                 return (
-                    <input className={formControlClass} {...input} placeholder={placeholder || label} type={type} autoFocus={autofocus}/>
+                    <input className={formControlClass} {...input} placeholder={placeholder || label} type={type} autoFocus={autofocus} ref={inputRef}/>
                 )
         }
     };
+
+
 
     return(
         <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
