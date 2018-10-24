@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 import ReactTooltip from 'react-tooltip'
 import {toCents} from "./toCents"
 import {connect} from 'react-redux';
-
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 
 
@@ -56,8 +56,8 @@ let inputField = props => {
             <div className={`form-input-flex _input-container- _input-container-${className}`}>
                 {getInputField(type)}
                 {touched &&
-                    ((error &&
-                        <span className={`form-error _form-error- _form-error-${className}`}>{error}</span>) ||
+                ((error &&
+                    <span className={`form-error _form-error- _form-error-${className}`}>{error}</span>) ||
                     (warning &&
                         <span className={`form-warning _form-error- _form-warning-${className}`}>{warning}</span>
                     ))
@@ -267,8 +267,17 @@ class priceField extends React.Component {
         }
         let formControlClass = `form-control ${className}-input _input- _input-${className}`;
         let price = isCents ?  (value/100) : value;
-        let formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts(Number(price));
-        let prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
+        let prefix = "$";
+        if(!Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts){
+            prefix = getSymbolFromCurrency(currency || (options.currency && options.currency.value) || "USD");
+        }else {
+            let formatParts = Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: currency || (options.currency && options.currency.value) || "USD"
+            }).formatToParts(Number(price));
+            prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
+        }
+        // console.log("PREFIX" prefix);
         return (
             <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
                 {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
