@@ -158,7 +158,10 @@ class OnOffToggleField extends React.Component {
 
     render(){
 
-        let { faIcon, icon, color, input, label, type} = this.props;
+        let {className, faIcon, icon, color, input, label, type} = this.props;
+        if(!className){
+            className = 'default'
+        }
         let style = {};
         if( input.value === true){
             style = { ...style, color: "#ffffff", backgroundColor: color};
@@ -167,12 +170,14 @@ class OnOffToggleField extends React.Component {
         }else{
             style = { ...style, color: "#dedede" };
         }
+        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
 
         return(
-            <div className="form-group form-group-flex sb-form-group">
-                {label && <label className="control-label form-label-flex-md">{label}</label>}
-                <div style={input.disabled && ({"cursor" : "not-allowed"})} className={`iconToggleField slideToggle ${input.value && 'active'} ${!input.disabled && this.state.hover && 'hover'}`}
-                     data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
+            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
+                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
+                <div style={input.disabled && ({"cursor" : "not-allowed"})} 
+                    className={`iconToggleField slideToggle ${input.value ? 'active' : 'inactive'} ${!input.disabled && this.state.hover && 'hover'}`}
+                    data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
                     <span style={style} className="itf-icon"/>
                     {/*<ReactTooltip place="bottom" type="dark" effect="solid"/>*/}
                     <input className="hidden checkbox"
