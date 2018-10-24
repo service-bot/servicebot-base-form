@@ -41,6 +41,10 @@ var _toCents = require('./toCents');
 
 var _reactRedux = require('react-redux');
 
+var _currencySymbolMap = require('currency-symbol-map');
+
+var _currencySymbolMap2 = _interopRequireDefault(_currencySymbolMap);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var widgetField = function widgetField(props) {
@@ -467,8 +471,17 @@ var priceField = function (_React$Component4) {
             }
             var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
             var price = isCents ? value / 100 : value;
-            var formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || options.currency && options.currency.value || "USD" }).formatToParts(Number(price));
-            var prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
+            var prefix = "$";
+            if (!Intl.NumberFormat('en-US', { style: 'currency', currency: currency || options.currency && options.currency.value || "USD" }).formatToParts) {
+                prefix = (0, _currencySymbolMap2.default)(currency || options.currency && options.currency.value || "USD");
+            } else {
+                var formatParts = Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency || options.currency && options.currency.value || "USD"
+                }).formatToParts(Number(price));
+                prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
+            }
+            // console.log("PREFIX" prefix);
             return _react2.default.createElement(
                 'div',
                 { className: 'form-group form-group-flex sb-form-group _group-' + className },
