@@ -134,11 +134,12 @@ class OnOffToggleField extends React.Component {
     }
 
     componentDidMount() {
-        let initialValue = this.props.input.value || false;
-        if(this.props.input.onChange) {
-            this.props.input.onChange(initialValue);
+        if(!this.props.disableOnMount) {
+            let initialValue = this.props.input.value || false;
+            if (this.props.input.onChange) {
+                this.props.input.onChange(initialValue);
+            }
         }
-
     }
 
     toggle(){
