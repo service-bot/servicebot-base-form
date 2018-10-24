@@ -285,6 +285,7 @@ var OnOffToggleField = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var _props4 = this.props,
+                className = _props4.className,
                 faIcon = _props4.faIcon,
                 icon = _props4.icon,
                 color = _props4.color,
@@ -292,6 +293,9 @@ var OnOffToggleField = function (_React$Component2) {
                 label = _props4.label,
                 type = _props4.type;
 
+            if (!className) {
+                className = 'default';
+            }
             var style = {};
             if (input.value === true) {
                 style = (0, _extends3.default)({}, style, { color: "#ffffff", backgroundColor: color });
@@ -300,18 +304,20 @@ var OnOffToggleField = function (_React$Component2) {
             } else {
                 style = (0, _extends3.default)({}, style, { color: "#dedede" });
             }
+            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
 
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group' },
+                { className: 'form-group form-group-flex sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md' },
+                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: input.disabled && { "cursor": "not-allowed" }, className: 'iconToggleField slideToggle ' + (input.value && 'active') + ' ' + (!input.disabled && this.state.hover && 'hover'),
+                    { style: input.disabled && { "cursor": "not-allowed" },
+                        className: 'iconToggleField slideToggle ' + (input.value ? 'active' : 'inactive') + ' ' + (!input.disabled && this.state.hover && 'hover'),
                         'data-tip': label, onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff, onClick: this.toggle },
                     _react2.default.createElement('span', { style: style, className: 'itf-icon' }),
                     _react2.default.createElement('input', { className: 'hidden checkbox',
