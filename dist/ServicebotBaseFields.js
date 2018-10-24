@@ -85,6 +85,7 @@ var widgetField = function widgetField(props) {
 
 var inputField = function inputField(props) {
     var className = props.className,
+        inputRef = props.inputRef,
         input = props.input,
         placeholder = props.placeholder,
         label = props.label,
@@ -103,12 +104,12 @@ var inputField = function inputField(props) {
     var getInputField = function getInputField(type) {
         switch (type) {
             case 'textarea':
-                return _react2.default.createElement('textarea', (0, _extends3.default)({ className: formControlClass }, input, { placeholder: label, autoFocus: autofocus }));
+                return _react2.default.createElement('textarea', (0, _extends3.default)({ className: formControlClass }, input, { placeholder: label, autoFocus: autofocus, ref: inputRef }));
                 break;
             case 'checkbox':
-                return _react2.default.createElement('input', (0, _extends3.default)({ className: formControlClass + ' checkbox' }, input, { placeholder: label, type: type, autoFocus: autofocus }));
+                return _react2.default.createElement('input', (0, _extends3.default)({ className: formControlClass + ' checkbox' }, input, { placeholder: label, type: type, autoFocus: autofocus, ref: inputRef }));
             default:
-                return _react2.default.createElement('input', (0, _extends3.default)({ className: formControlClass }, input, { placeholder: placeholder || label, type: type, autoFocus: autofocus }));
+                return _react2.default.createElement('input', (0, _extends3.default)({ className: formControlClass }, input, { placeholder: placeholder || label, type: type, autoFocus: autofocus, ref: inputRef }));
         }
     };
 
