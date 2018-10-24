@@ -182,6 +182,7 @@ var selectField = function (_React$Component) {
         key: 'render',
         value: function render() {
             var _props3 = this.props,
+                className = _props3.className,
                 input = _props3.input,
                 label = _props3.label,
                 type = _props3.type,
@@ -193,20 +194,24 @@ var selectField = function (_React$Component) {
                 error = _props3$meta.error,
                 warning = _props3$meta.warning;
 
+            if (!className) {
+                className = 'default';
+            }
+            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group' },
+                { className: 'form-group form-group-flex sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md' },
+                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'form-input-flex' },
+                    { className: 'form-input-flex _input-container- _input-container-' + className },
                     _react2.default.createElement(
                         'select',
-                        (0, _extends3.default)({ className: 'form-control' }, input, { placeholder: label }),
+                        (0, _extends3.default)({ className: formControlClass }, input, { placeholder: label }),
                         options && options.map(function (option, index) {
                             return _react2.default.createElement(
                                 'option',
@@ -436,6 +441,7 @@ var priceField = function (_React$Component4) {
         key: 'render',
         value: function render() {
             var _props6 = this.props,
+                className = _props6.className,
                 options = _props6.options,
                 currency = _props6.currency,
                 isCents = _props6.isCents,
@@ -450,21 +456,25 @@ var priceField = function (_React$Component4) {
                 error = _props6$meta.error,
                 warning = _props6$meta.warning;
 
+            if (!className) {
+                className = 'default';
+            }
+            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
             var price = isCents ? value / 100 : value;
             var formatParts = Intl.NumberFormat('en-US', { style: 'currency', currency: currency || options.currency && options.currency.value || "USD" }).formatToParts(Number(price));
             var prefix = formatParts[1].type === "literal" ? formatParts[0].value + formatParts[1].value : formatParts[0].value;
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group' },
+                { className: 'form-group form-group-flex sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md' },
+                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'form-input-flex' },
-                    _react2.default.createElement(_reactNumberFormat2.default, { className: 'form-control', name: name,
+                    { className: 'form-input-flex _input-container- _input-container-' + className },
+                    _react2.default.createElement(_reactNumberFormat2.default, { className: formControlClass, name: name,
                         prefix: prefix, decimalSeparator: '.', thousandSeparator: ',', decimalScale: '2',
                         allowNegative: false,
                         fixedDecimalScale: false,
