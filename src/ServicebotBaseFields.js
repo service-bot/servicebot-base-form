@@ -13,8 +13,8 @@ let widgetField = props => {
 
     return (
         <div className={`sb-form-group`}>
-            {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="form-label-flex-md">{label}</label>}
-            <div className="form-input-flex">
+            {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="_label-">{label}</label>}
+            <div className="_input-container-">
                 <WidgetComponent
                     {...props}
                 />
@@ -161,7 +161,7 @@ class OnOffToggleField extends React.Component {
 
     render(){
 
-        let {className, faIcon, icon, color, input, label, type} = this.props;
+        let {children, className, faIcon, icon, color, input, label, type} = this.props;
         if(!className){
             className = 'default'
         }
@@ -178,10 +178,10 @@ class OnOffToggleField extends React.Component {
         return(
             <div className={`sb-form-group _group-${className}`}>
                 {label && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
-                <div style={input.disabled && ({"cursor" : "not-allowed"})} 
+                <div style={input.disabled && ({"cursor" : "not-allowed"})}
                     className={`iconToggleField slideToggle ${input.value ? 'active' : 'inactive'} ${!input.disabled && this.state.hover && 'hover'}`}
                     data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
-                    <span style={style} className="itf-icon"/>
+                    <span className="itf-icon"/>
                     {/*<ReactTooltip place="bottom" type="dark" effect="solid"/>*/}
                     <input className="hidden checkbox"
                            name={input.name}
@@ -189,6 +189,7 @@ class OnOffToggleField extends React.Component {
                            placeholder={label}
                            type={type || "checkbox"}/>
                 </div>
+                {children}
             </div>
         )
     }

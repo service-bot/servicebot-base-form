@@ -63,12 +63,12 @@ var widgetField = function widgetField(props) {
         { className: 'sb-form-group' },
         label && type !== 'hidden' && (type === 'text' || type === 'secure-string') && _react2.default.createElement(
             'label',
-            { className: 'form-label-flex-md' },
+            { className: '_label-' },
             label
         ),
         _react2.default.createElement(
             'div',
-            { className: 'form-input-flex' },
+            { className: '_input-container-' },
             _react2.default.createElement(WidgetComponent, props),
             touched && (error && _react2.default.createElement(
                 'span',
@@ -292,6 +292,7 @@ var OnOffToggleField = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var _props4 = this.props,
+                children = _props4.children,
                 className = _props4.className,
                 faIcon = _props4.faIcon,
                 icon = _props4.icon,
@@ -326,13 +327,14 @@ var OnOffToggleField = function (_React$Component2) {
                     { style: input.disabled && { "cursor": "not-allowed" },
                         className: 'iconToggleField slideToggle ' + (input.value ? 'active' : 'inactive') + ' ' + (!input.disabled && this.state.hover && 'hover'),
                         'data-tip': label, onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff, onClick: this.toggle },
-                    _react2.default.createElement('span', { style: style, className: 'itf-icon' }),
+                    _react2.default.createElement('span', { className: 'itf-icon' }),
                     _react2.default.createElement('input', { className: 'hidden checkbox',
                         name: input.name,
                         value: input.value || false,
                         placeholder: label,
                         type: type || "checkbox" })
-                )
+                ),
+                children
             );
         }
     }]);
