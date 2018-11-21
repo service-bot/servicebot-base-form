@@ -53,7 +53,7 @@ let inputField = props => {
 
 
     return(
-        <div className={`sb-form-group _group-${className}`}>
+        <div className={`sb-form-group _group-${className} ${type === 'hidden' && 'hidden'}`}>
             {(label && type !== 'hidden') && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
             <div className={`_input-container- _input-container-${className}`}>
                 {getInputField(type)}
