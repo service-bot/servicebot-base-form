@@ -9,3 +9,6 @@
 .s-alert-success{
     background-color: #16cfa5;
 }
+.hidden.checkbox{
+    display: none;
+}
