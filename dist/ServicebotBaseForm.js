@@ -103,7 +103,7 @@ Form name is 'servicebotForm' if selector is needed
 function Loading(props) {
     return _react2.default.createElement(
         'div',
-        { className: 'loader' },
+        { className: 'loader servicebot-base-form-loader' },
         _react2.default.createElement(
             'div',
             { className: 'lds-ellipsis' },
@@ -433,25 +433,41 @@ var ServiceBotBaseForm = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            if (this.state.initializing) {
-                return _react2.default.createElement(Loading, null);
+            var _props = this.props,
+                customLoader = _props.customLoader,
+                reShowForm = _props.reShowForm,
+                cssIcon = _props.cssIcon,
+                svgIcon = _props.svgIcon,
+                successHeading = _props.successHeading,
+                formProps = _props.formProps,
+                helpers = _props.helpers;
+            var _state = this.state,
+                initializing = _state.initializing,
+                success = _state.success,
+                successMessage = _state.successMessage,
+                loading = _state.loading;
+
+
+            if (initializing) {
+                return customLoader ? customLoader() : _react2.default.createElement(Loading, null);
             }
-            if (this.state.success && !this.props.reShowForm) {
+
+            if (success && !reShowForm) {
                 return _react2.default.createElement(
                     'div',
                     { className: '_success-ui' },
-                    _react2.default.createElement('i', { className: 'fa fa-check', 'aria-hidden': 'true' }),
-                    this.props.cssIcon && _react2.default.createElement('span', { className: '_css-icon-' + this.props.cssIcon }),
-                    this.props.svgIcon && _react2.default.createElement('img', { className: '_svg-icon', src: 'data:image/svg+xml,' + this.props.svgIcon }),
-                    this.props.successHeading && _react2.default.createElement(
+                    !cssIcon && !svgIcon && _react2.default.createElement('i', { className: 'fa fa-check', 'aria-hidden': 'true' }),
+                    cssIcon && _react2.default.createElement('span', { className: '_css-icon-' + cssIcon }),
+                    svgIcon && _react2.default.createElement('img', { className: '_svg-icon', src: 'data:image/svg+xml,' + svgIcon }),
+                    successHeading && _react2.default.createElement(
                         'h2',
                         { className: '_success-heading' },
-                        this.props.successHeading
+                        successHeading
                     ),
                     _react2.default.createElement(
                         'span',
                         { className: '_success-message' },
-                        this.state.successMessage
+                        successMessage
                     )
                 );
             } else {
@@ -461,8 +477,9 @@ var ServiceBotBaseForm = function (_React$Component) {
                     'div',
                     null,
                     _react2.default.createElement(_reactSAlert2.default, { stack: { limit: 3 } }),
-                    this.state.loading && _react2.default.createElement(Loading, null),
-                    _react2.default.createElement(ReduxFormWrapper, (0, _extends4.default)({}, this.props.formProps, { helpers: this.props.helpers, onSubmit: this.submitForm }))
+                    //base form submission loading component
+                    loading && (customLoader ? customLoader() : _react2.default.createElement(Loading, null)),
+                    _react2.default.createElement(ReduxFormWrapper, (0, _extends4.default)({}, formProps, { helpers: helpers, onSubmit: this.submitForm }))
                 );
             }
         }
