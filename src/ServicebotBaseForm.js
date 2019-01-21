@@ -235,7 +235,7 @@ class ServiceBotBaseForm extends React.Component {
             let ReduxFormWrapper = this.state.reduxForm;
 
             return <div>
-                <h2>Local base form</h2>
+                {/*<h2>Local base form</h2>*/}
                 <Alert stack={{limit: 3}} />
                 {//base form submission loading component
                     loading && (customLoader ? customLoader() : <Loading/>)
