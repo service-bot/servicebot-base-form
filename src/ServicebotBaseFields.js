@@ -12,9 +12,9 @@ let widgetField = props => {
     let WidgetComponent = widget;
 
     return (
-        <div className={`form-group form-group-flex sb-form-group`}>
-            {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="control-label form-label-flex-md">{label}</label>}
-            <div className="form-input-flex">
+        <div className={`sb-form-group`}>
+            {(label && type !== 'hidden' && (type ==='text' || type === 'secure-string')) && <label className="_label-">{label}</label>}
+            <div className="_input-container-">
                 <WidgetComponent
                     {...props}
                 />
@@ -30,8 +30,8 @@ let inputField = props => {
     if(!className){
         className = 'default'
     }
-    let formControlClass = `form-control ${className}-input _input- _input-${className} ${touched && error ? 'has-error' : ''} ${touched && warning ? 'has-warning' : ''}`;
-    
+    let formControlClass = `${className}-input _input- _input-${className} ${touched && error ? 'has-error' : ''} ${touched && warning ? 'has-warning' : ''}`;
+
     let getInputField = (type)=>{
         switch(type){
             case 'textarea':
@@ -53,9 +53,9 @@ let inputField = props => {
 
 
     return(
-        <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
-            {(label && type !== 'hidden') && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
-            <div className={`form-input-flex _input-container- _input-container-${className}`}>
+        <div className={`sb-form-group _group-${className} ${type === 'hidden' && 'hidden'}`}>
+            {(label && type !== 'hidden') && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
+            <div className={`_input-container- _input-container-${className}`}>
                 {getInputField(type)}
                 {touched &&
                 ((error &&
@@ -102,11 +102,11 @@ class selectField extends React.Component {
         if(!className){
             className = 'default'
         }
-        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
+        let formControlClass = `${className}-input _input- _input-${className}`;
         return (
-            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
-                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
-                <div className={`form-input-flex _input-container- _input-container-${className}`}>
+            <div className={`sb-form-group _group-${className}`}>
+                {label && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
+                <div className={`_input-container- _input-container-${className}`}>
                     <select className={formControlClass} {...input} placeholder={label}>
                         {options && options.map((option, index) =>
                             <option key={index} value={valueKey ? option[valueKey] : option.id}>
@@ -161,7 +161,7 @@ class OnOffToggleField extends React.Component {
 
     render(){
 
-        let {className, faIcon, icon, color, input, label, type} = this.props;
+        let {children, className, faIcon, icon, color, input, label, type} = this.props;
         if(!className){
             className = 'default'
         }
@@ -173,15 +173,15 @@ class OnOffToggleField extends React.Component {
         }else{
             style = { ...style, color: "#dedede" };
         }
-        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
+        let formControlClass = `${className}-input _input- _input-${className}`;
 
         return(
-            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
-                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
-                <div style={input.disabled && ({"cursor" : "not-allowed"})} 
+            <div className={`sb-form-group _group-${className}`}>
+                {label && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
+                <div style={input.disabled && ({"cursor" : "not-allowed"})}
                     className={`iconToggleField slideToggle ${input.value ? 'active' : 'inactive'} ${!input.disabled && this.state.hover && 'hover'}`}
-                     onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
-                    <span style={style} className="itf-icon"/>
+                    data-tip={label} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff} onClick={this.toggle}>
+                    <span className="itf-icon"/>
                     {/*<ReactTooltip place="bottom" type="dark" effect="solid"/>*/}
                     <input className="hidden checkbox"
                            name={input.name}
@@ -189,6 +189,7 @@ class OnOffToggleField extends React.Component {
                            placeholder={label}
                            type={type || "checkbox"}/>
                 </div>
+                {children}
             </div>
         )
     }
@@ -273,7 +274,7 @@ class priceField extends React.Component {
         if(!className){
             className = 'default'
         }
-        let formControlClass = `form-control ${className}-input _input- _input-${className}`;
+        let formControlClass = `${className}-input _input- _input-${className}`;
         let price = isCents ?  (value/100) : value;
         let prefix = "$";
         if(!Intl.NumberFormat('en-US', { style: 'currency', currency: currency || (options.currency && options.currency.value) || "USD" }).formatToParts){
@@ -287,9 +288,9 @@ class priceField extends React.Component {
         }
         // console.log("PREFIX" prefix);
         return (
-            <div className={`form-group form-group-flex sb-form-group _group-${className}`}>
-                {label && <label className={`control-label form-label-flex-md ${className}-label _label- _label-${className}`}>{label}</label>}
-                <div className={`form-input-flex _input-container- _input-container-${className}`}>
+            <div className={`sb-form-group _group-${className}`}>
+                {label && <label className={`${className}-label _label- _label-${className}`}>{label}</label>}
+                <div className={`_input-container- _input-container-${className}`}>
                     <NumberFormat className={formControlClass} name={name}
                                   prefix={prefix} decimalSeparator="." thousandSeparator="," decimalScale="2"
                                   allowNegative={false}

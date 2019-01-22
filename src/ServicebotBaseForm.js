@@ -48,7 +48,7 @@ Form name is 'servicebotForm' if selector is needed
 
 
 function Loading(props){
-    return(<div className="loader servicebot-base-form-loader"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>);
+    return(<div className="loader"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>);
 }
 class ServiceBotBaseForm extends React.Component {
 
@@ -225,23 +225,23 @@ class ServiceBotBaseForm extends React.Component {
 
         if (success && !reShowForm) {
             return <div className={`_success-ui`}>
-                {!cssIcon && !svgIcon && <i className="fa fa-check" aria-hidden="true"/>}
-                {cssIcon && <span className={`_css-icon-${cssIcon}`}/>}
-                {svgIcon && <img className={`_svg-icon`} src={`data:image/svg+xml,${svgIcon}`}/>}
-                {successHeading && <h2 className={`_success-heading`}>{successHeading}</h2>}
-                <span className={`_success-message`}>{successMessage}</span>
-            </div>
+                    {!cssIcon && !svgIcon && <i className="fa fa-check" aria-hidden="true"/>}
+                    {cssIcon && <span className={`_css-icon-${cssIcon}`}/>}
+                    {svgIcon && <img className={`_svg-icon`} src={`data:image/svg+xml,${svgIcon}`}/>}
+                    {successHeading && <h2 className={`_success-heading`}>{successHeading}</h2>}
+                    <span className={`_success-message`}>{successMessage}</span>
+                </div>
         } else {
             let ReduxFormWrapper = this.state.reduxForm;
 
             return <div>
-                {/*<h2>Local base form</h2>*/}
-                <Alert stack={{limit: 3}} />
-                {//base form submission loading component
-                    loading && (customLoader ? customLoader() : <Loading/>)
-                }
-                <ReduxFormWrapper {...formProps} helpers={helpers} onSubmit={this.submitForm} />
-            </div>
+                    {/*<h2>Local base form</h2>*/}
+                    <Alert stack={{limit: 3}} />
+                    {//base form submission loading component
+                        loading && (customLoader ? customLoader() : <Loading/>)
+                    }
+                    <ReduxFormWrapper {...formProps} helpers={helpers} onSubmit={this.submitForm} />
+                </div>
         }
     }
 }
