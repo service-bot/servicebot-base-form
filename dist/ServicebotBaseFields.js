@@ -115,7 +115,7 @@ var inputField = function inputField(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'sb-form-group _group-' + className },
+        { className: 'sb-form-group _group-' + className + ' ' + (type === 'hidden' && 'hidden') },
         label && type !== 'hidden' && _react2.default.createElement(
             'label',
             { className: className + '-label _label- _label-' + className },

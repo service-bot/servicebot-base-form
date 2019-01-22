@@ -103,7 +103,7 @@ Form name is 'servicebotForm' if selector is needed
 function Loading(props) {
     return _react2.default.createElement(
         'div',
-        { className: 'loader servicebot-base-form-loader' },
+        { className: 'loader' },
         _react2.default.createElement(
             'div',
             { className: 'lds-ellipsis' },
