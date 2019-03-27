@@ -60,15 +60,15 @@ var widgetField = function widgetField(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'form-group form-group-flex sb-form-group' },
+        { className: 'sb-form-group' },
         label && type !== 'hidden' && (type === 'text' || type === 'secure-string') && _react2.default.createElement(
             'label',
-            { className: 'control-label form-label-flex-md' },
+            { className: '_label-' },
             label
         ),
         _react2.default.createElement(
             'div',
-            { className: 'form-input-flex' },
+            { className: '_input-container-' },
             _react2.default.createElement(WidgetComponent, props),
             touched && (error && _react2.default.createElement(
                 'span',
@@ -99,7 +99,7 @@ var inputField = function inputField(props) {
     if (!className) {
         className = 'default';
     }
-    var formControlClass = 'form-control ' + className + '-input _input- _input-' + className + ' ' + (touched && error ? 'has-error' : '') + ' ' + (touched && warning ? 'has-warning' : '');
+    var formControlClass = className + '-input _input- _input-' + className + ' ' + (touched && error ? 'has-error' : '') + ' ' + (touched && warning ? 'has-warning' : '');
 
     var getInputField = function getInputField(type) {
         switch (type) {
@@ -115,15 +115,15 @@ var inputField = function inputField(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: 'form-group form-group-flex sb-form-group _group-' + className },
+        { className: 'sb-form-group _group-' + className + ' ' + (type === 'hidden' && 'hidden') },
         label && type !== 'hidden' && _react2.default.createElement(
             'label',
-            { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
+            { className: className + '-label _label- _label-' + className },
             label
         ),
         _react2.default.createElement(
             'div',
-            { className: 'form-input-flex _input-container- _input-container-' + className },
+            { className: '_input-container- _input-container-' + className },
             getInputField(type),
             touched && (error && _react2.default.createElement(
                 'span',
@@ -202,18 +202,18 @@ var selectField = function (_React$Component) {
             if (!className) {
                 className = 'default';
             }
-            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
+            var formControlClass = className + '-input _input- _input-' + className;
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group _group-' + className },
+                { className: 'sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
+                    { className: className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'form-input-flex _input-container- _input-container-' + className },
+                    { className: '_input-container- _input-container-' + className },
                     _react2.default.createElement(
                         'select',
                         (0, _extends3.default)({ className: formControlClass }, input, { placeholder: label }),
@@ -292,6 +292,7 @@ var OnOffToggleField = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var _props4 = this.props,
+                children = _props4.children,
                 className = _props4.className,
                 faIcon = _props4.faIcon,
                 icon = _props4.icon,
@@ -311,14 +312,14 @@ var OnOffToggleField = function (_React$Component2) {
             } else {
                 style = (0, _extends3.default)({}, style, { color: "#dedede" });
             }
-            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
+            var formControlClass = className + '-input _input- _input-' + className;
 
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group _group-' + className },
+                { className: 'sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
+                    { className: className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
@@ -326,13 +327,14 @@ var OnOffToggleField = function (_React$Component2) {
                     { style: input.disabled && { "cursor": "not-allowed" },
                         className: 'iconToggleField slideToggle ' + (input.value ? 'active' : 'inactive') + ' ' + (!input.disabled && this.state.hover && 'hover'),
                         'data-tip': label, onMouseEnter: this.hoverOn, onMouseLeave: this.hoverOff, onClick: this.toggle },
-                    _react2.default.createElement('span', { style: style, className: 'itf-icon' }),
+                    _react2.default.createElement('span', { className: 'itf-icon' }),
                     _react2.default.createElement('input', { className: 'hidden checkbox',
                         name: input.name,
                         value: input.value || false,
                         placeholder: label,
                         type: type || "checkbox" })
-                )
+                ),
+                children
             );
         }
     }]);
@@ -472,7 +474,7 @@ var priceField = function (_React$Component4) {
             if (!className) {
                 className = 'default';
             }
-            var formControlClass = 'form-control ' + className + '-input _input- _input-' + className;
+            var formControlClass = className + '-input _input- _input-' + className;
             var price = isCents ? value / 100 : value;
             var prefix = "$";
             if (!Intl.NumberFormat('en-US', { style: 'currency', currency: currency || options.currency && options.currency.value || "USD" }).formatToParts) {
@@ -487,15 +489,15 @@ var priceField = function (_React$Component4) {
             // console.log("PREFIX" prefix);
             return _react2.default.createElement(
                 'div',
-                { className: 'form-group form-group-flex sb-form-group _group-' + className },
+                { className: 'sb-form-group _group-' + className },
                 label && _react2.default.createElement(
                     'label',
-                    { className: 'control-label form-label-flex-md ' + className + '-label _label- _label-' + className },
+                    { className: className + '-label _label- _label-' + className },
                     label
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'form-input-flex _input-container- _input-container-' + className },
+                    { className: '_input-container- _input-container-' + className },
                     _react2.default.createElement(_reactNumberFormat2.default, { className: formControlClass, name: name,
                         prefix: prefix, decimalSeparator: '.', thousandSeparator: ',', decimalScale: '2',
                         allowNegative: false,
